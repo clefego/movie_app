@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/common/HttpHandler.dart';
+import 'package:movie_app/media_list.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,17 +7,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
-  void initState() {
-    super.initState();
-    _loadJson();
-  }
-
-  _loadJson() async {
-    String data = await HttpHandler().fetchMovies();
-    print(data);
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -55,7 +44,9 @@ class _HomeState extends State<Home> {
           )
         ],
       )),
-      body: new PageView(),
+      body: new PageView(
+        children: [new MediaList()],
+      ),
       bottomNavigationBar: new BottomNavigationBar(
         items: _getFooterItems(),
       ),
@@ -67,14 +58,17 @@ class _HomeState extends State<Home> {
       new BottomNavigationBarItem(
         icon: new Icon(Icons.thumb_up),
         title: new Text("Populares"),
+        //onPressed: buttonState ? _buttonChange : null,
       ),
       new BottomNavigationBarItem(
         icon: new Icon(Icons.update),
         title: new Text("Em Breve"),
+        //onPressed: buttonState ? _buttonChange : null,
       ),
       new BottomNavigationBarItem(
         icon: new Icon(Icons.star),
         title: new Text("Destaques"),
+        //onPressed: buttonState ? _buttonChange : null,
       )
     ];
   }
