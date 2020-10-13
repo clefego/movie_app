@@ -44,6 +44,7 @@ class MediaListItem extends StatelessWidget {
                       ),
                     ),
                     new Container(
+                      width: 250.0,
                       padding: const EdgeInsets.only(top: 4.0),
                       child: new Text(
                         media.getGenres(),
@@ -54,7 +55,21 @@ class MediaListItem extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              new Positioned(
+                  right: 5.0,
+                  bottom: 10.0,
+                  child: new Column(
+                    children: <Widget>[
+                      new Row(
+                        children: <Widget>[
+                          new Text(media.voteAverage.toString()),
+                          new Container(width: 4.0),
+                          new Icon(Icons.star, color: Colors.white, size: 16.0)
+                        ],
+                      )
+                    ],
+                  ))
             ],
           ))
         ],
