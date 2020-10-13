@@ -14,13 +14,28 @@ class _MediaListState extends State<MediaList> {
   @override
   void initState() {
     super.initState();
-    loadMovies();
+    loadPopularMovies();
   }
 
-  void loadMovies() async {
+  void loadPopularMovies() async {
     var movies = await HttpHandler().fetchPopularMovies();
-
     setState(() {
+      _media.addAll(movies);
+    });
+  }
+
+  void loadUpcomingMovies() async {
+    var movies = await HttpHandler().fetchUpcomingMovies();
+    setState(() {
+      _media.clear();
+      _media.addAll(movies);
+    });
+  }
+
+  void loadTopRatedMovies() async {
+    var movies = await HttpHandler().fetchTopRatedMovies();
+    setState(() {
+      _media.clear();
       _media.addAll(movies);
     });
   }

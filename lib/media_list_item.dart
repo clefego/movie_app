@@ -29,6 +29,31 @@ class MediaListItem extends StatelessWidget {
                       color: Colors.grey[900].withOpacity(0.5)),
                   constraints: new BoxConstraints.expand(height: 55.0),
                 ),
+              ),
+              new Positioned(
+                left: 10.0,
+                bottom: 10.0,
+                child: new Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Container(
+                      child: new Text(
+                        media.title,
+                        style: new TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                    ),
+                    new Container(
+                      padding: const EdgeInsets.only(top: 4.0),
+                      child: new Text(
+                        media.getGenres(),
+                        style: new TextStyle(color: Colors.white),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
               )
             ],
           ))

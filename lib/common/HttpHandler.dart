@@ -22,7 +22,7 @@ class HttpHandler {
   }
 
   Future<List<Media>> fetchUpcomingMovies() {
-    var uri = new Uri.https(_baseUrl, "3/movie/popular",
+    var uri = new Uri.https(_baseUrl, "3/movie/upcoming",
         {'api_key': apikey, 'page': "1", 'language': _language});
 
     return getJson(uri).then(((data) =>
@@ -30,7 +30,7 @@ class HttpHandler {
   }
 
   Future<List<Media>> fetchTopRatedMovies() {
-    var uri = new Uri.https(_baseUrl, "3/movie/popular",
+    var uri = new Uri.https(_baseUrl, "3/movie/top_rated",
         {'api_key': apikey, 'page': "1", 'language': _language});
 
     return getJson(uri).then(((data) =>
