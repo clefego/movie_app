@@ -19,8 +19,8 @@ class HttpHandler {
     return json.decode(response.body);
   }
 
-  Future<List<Media>> fetchMovies() {
-    var uri = new Uri.https(_baseUrl, "3/movie/popular",
+  Future<List<Media>> fetchMovies({String category: "populares"}) async {
+    var uri = new Uri.https(_baseUrl, "3/movie/$category",
         {'api_key': apikey, 'page': "1", 'language': _language});
 
     return getJson(uri).then(((data) => data['results']
@@ -28,8 +28,8 @@ class HttpHandler {
         .toList()));
   }
 
-  Future<List<Media>> fetchShow() {
-    var uri = new Uri.https(_baseUrl, "3/tv/popular",
+  Future<List<Media>> fetchShow({String category: "populares"}) async {
+    var uri = new Uri.https(_baseUrl, "3/tv/$category",
         {'api_key': apikey, 'page': "1", 'language': _language});
 
     return getJson(uri).then(((data) => data['results']
