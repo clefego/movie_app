@@ -24,7 +24,7 @@ class Media {
       return new Media.deserialize(jsonMap, mediaType);
     } catch (ex) {
       throw ex;
-    }
+    }teste
   }
 
   Media.deserialize(Map json, MediaType mediaType)
