@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/common/HttpHandler.dart';
 import 'package:movie_app/model/Media.dart';
 import 'package:movie_app/media_list_item.dart';
+import 'package:movie_app/common/MediaProvider.dart';
 
 class MediaList extends StatefulWidget {
+  final MediaProvider provider;
+
+  MediaList(this.provider);
+
   @override
   _MediaListState createState() => _MediaListState();
 }
@@ -14,29 +18,22 @@ class _MediaListState extends State<MediaList> {
   @override
   void initState() {
     super.initState();
-    loadPopularMovies();
+    loadMovies();
   }
 
-  void loadPopularMovies() async {
-    var movies = await HttpHandler().fetchPopularMovies();
-    setState(() {
-      _media.addAll(movies);
-    });
+  @override
+  void didUpdateWidget(oldWidget) {
+    if (oldWidget.provider.runtimeType != widget.provider.runtimeType) {
+      _media = new List();
+      loadMovies();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
-  void loadUpcomingMovies() async {
-    var movies = await HttpHandler().fetchUpcomingMovies();
+  void loadMovies() async {
+    var media = await widget.provider.fetchMedia();
     setState(() {
-      _media.clear();
-      _media.addAll(movies);
-    });
-  }
-
-  void loadTopRatedMovies() async {
-    var movies = await HttpHandler().fetchTopRatedMovies();
-    setState(() {
-      _media.clear();
-      _media.addAll(movies);
+      _media.addAll(media);
     });
   }
 

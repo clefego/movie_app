@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/media_list.dart';
+import 'package:movie_app/common/MediaProvider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -7,6 +8,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final MediaProvider movieProvider = new MovieProvider();
+  final MediaProvider showProvider = new ShowProvider();
+  MediaType mediaType = MediaType.movie;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -25,14 +30,24 @@ class _HomeState extends State<Home> {
           new DrawerHeader(child: new Material()),
           new ListTile(
             title: new Text("Cinema"),
+            selected: mediaType == MediaType.movie,
             trailing: new Icon(Icons.local_movies),
+            onTap: () {
+              _changeMediaType(MediaType.movie);
+              Navigator.of(context).pop();
+            },
           ),
           new Divider(
             height: 5.0,
           ),
           new ListTile(
             title: new Text("Televisão"),
+            selected: mediaType == MediaType.show,
             trailing: new Icon(Icons.live_tv),
+            onTap: () {
+              _changeMediaType(MediaType.show);
+              Navigator.of(context).pop();
+            },
           ),
           new Divider(
             height: 5.0,
@@ -45,7 +60,7 @@ class _HomeState extends State<Home> {
         ],
       )),
       body: new PageView(
-        children: [new MediaList()],
+        children: _getMediaList(),
       ),
       bottomNavigationBar: new BottomNavigationBar(
         items: _getFooterItems(),
@@ -71,5 +86,19 @@ class _HomeState extends State<Home> {
         //onPressed: buttonState ? _buttonChange : null,
       )
     ];
+  }
+
+  void _changeMediaType(MediaType type) {
+    if (mediaType != type) {
+      setState(() {
+        mediaType = type;
+      });
+    }
+  }
+
+  List<Widget> _getMediaList() {
+    return (mediaType == MediaType.movie)
+        ? <Widget>[new MediaList(movieProvider)]
+        : <Widget>[new MediaList(showProvider)];
   }
 }
