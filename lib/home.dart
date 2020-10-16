@@ -90,23 +90,35 @@ class _HomeState extends State<Home> {
   }
 
   List<BottomNavigationBarItem> _getFooterItems() {
-    return [
-      new BottomNavigationBarItem(
-        icon: new Icon(Icons.thumb_up),
-        title: new Text("Populares"),
-        //onPressed: buttonState ? _buttonChange : null,
-      ),
-      new BottomNavigationBarItem(
-        icon: new Icon(Icons.update),
-        title: new Text("Em Breve"),
-        //onPressed: buttonState ? _buttonChange : null,
-      ),
-      new BottomNavigationBarItem(
-        icon: new Icon(Icons.star),
-        title: new Text("Destaques"),
-        //onPressed: buttonState ? _buttonChange : null,
-      )
-    ];
+    return mediaType == MediaType.movie
+        ? [
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.thumb_up),
+              title: new Text("Populares"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.update),
+              title: new Text("Em Breve"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.star),
+              title: new Text("Destaques"),
+            )
+          ]
+        : [
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.thumb_up),
+              title: new Text("Populares"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.update),
+              title: new Text("No Ar"),
+            ),
+            new BottomNavigationBarItem(
+              icon: new Icon(Icons.star),
+              title: new Text("Destaques"),
+            )
+          ];
   }
 
   void _changeMediaType(MediaType type) {
