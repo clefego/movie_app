@@ -24,6 +24,14 @@ Map<int, String> _genreMap = {
   53: "Thriller",
   10752: "Guerra",
   37: "Faroeste",
+  10759: "Acão & Aventura",
+  10762: "Infantil",
+  10763: "Notícias",
+  10764: "Reality Show",
+  10765: "Ficção Científica & Fantasia",
+  10766: "Soap Operas",
+  10767: "Talk Show",
+  10768: "Guerra & Politica",
 };
 
 List<String> genresToList(List<dynamic> genreIds) =>

@@ -6,6 +6,7 @@ import 'package:movie_app/common/MediaProvider.dart';
 class MediaList extends StatefulWidget {
   final MediaProvider provider;
   String category;
+  String category1;
   MediaList(this.provider, this.category);
 
   @override
